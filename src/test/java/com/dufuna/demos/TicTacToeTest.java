@@ -7,6 +7,6 @@ public class TicTacToeTest
     @Test
     void name()
     {
-
+        TicTacToe game = new TicTacToe();
     }
 }
