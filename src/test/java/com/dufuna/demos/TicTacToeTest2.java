@@ -88,5 +88,19 @@ public class TicTacToeTest2
         assertEquals(true, status);
     }
 
+    @Test
+    void checks_for_diagonal_win()
+    {
+        TicTacToe2 tictac = new TicTacToe2();
+        tictac.play(0,0);
+        tictac.play(2,0);
+        tictac.play(1,1);
+        tictac.play(2,1);
+        tictac.play(2,2);
+        boolean status = tictac.status;
+
+        assertEquals(true, status);
+    }
+
 
 }
