@@ -7,6 +7,7 @@ public class TicTacToe2
     String[][] board = new String[3][3];
 
     boolean status = false;
+    boolean isDraw = false;
 
     public void play(int row, int col)
     {
@@ -18,13 +19,16 @@ public class TicTacToe2
                 PLAYER = "O";
             else
                 PLAYER = "X";
-
+            int drawStreak = 0;
             //horizontal check
             for (String[] rowTable : board) {
                 if(rowTable[0] == rowTable[1] &&
                     rowTable[1] == rowTable[2] &&
                     rowTable[2] != null){
                     status = true;
+                    break;
+                }else if (rowTable[0] != null && rowTable[1] != null && rowTable[2] != null) {
+                    drawStreak+=1;
                 }
             }
 
@@ -36,6 +40,7 @@ public class TicTacToe2
                 )
                 {
                     status = true;
+                    break;
                 }
             }
 
@@ -46,7 +51,11 @@ public class TicTacToe2
                 )
                 {
                     status = true;
+                    break;
                 }
+            }
+            if (!status && drawStreak == 3){
+                isDraw = true;
             }
         }
     }
