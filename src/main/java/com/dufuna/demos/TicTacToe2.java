@@ -19,10 +19,12 @@ public class TicTacToe2
             else
                 PLAYER = "X";
 
-            for (String[] rowTable : board) {
+            for (String[] rowTable : board)
+            {
                 if(rowTable[0] == rowTable[1] &&
                     rowTable[1] == rowTable[2] &&
-                    rowTable[2] != null){
+                    rowTable[2] != null)
+                {
                     status = true;
                 }
             }
