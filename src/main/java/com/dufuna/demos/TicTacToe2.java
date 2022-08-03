@@ -1,14 +1,52 @@
 package com.dufuna.demos;
 
+import java.util.Scanner;
+
 public class TicTacToe2
 {
 
-    String PLAYER = "X";
-    String[][] board = new String[3][3];
+    static String PLAYER = "X";
+    static String[][] board = new String[3][3];
+    static boolean isDraw = false;
+    static boolean isWin = false;
 
-    boolean status = false;
+    public static void main(String[] args)
+    {
+        Scanner key = new Scanner(System.in);
+        while(!isWin && !isDraw)
+        {
+            int whichPlayer;
+            if (PLAYER == "X")
+                whichPlayer = 1;
+            else{
+                whichPlayer = 2;
+            }
+            System.out.println("player " + whichPlayer + " enter row number >> ");
+            int row = key.nextInt();
+            System.out.println("player " + whichPlayer + " enter col number >> ");
+            int col = key.nextInt();
+            play(row,col);
 
-    public void play(int row, int col)
+            System.out.println(" ___________");
+            for(int i=0; i< board.length ; i++)
+            {
+                System.out.print("| ");
+                for(int j = 0; j < board[i].length; j++)
+                {
+                    if (board[i][j] == null)
+                        System.out.print(" _ ");
+                    else
+                        System.out.print(board[i][j] + " ");
+                }
+                System.out.print(" |");
+                System.out.println();
+            }
+            System.out.println(" __________");
+        }
+
+    }
+
+    public static void play(int row, int col)
     {
         if(board[row][col] == null)
         {
@@ -20,11 +58,22 @@ public class TicTacToe2
                 PLAYER = "X";
 
             //horizontal check
-            for (String[] rowTable : board) {
+            int count = 0;
+            for (String[] rowTable : board)
+            {
                 if(rowTable[0] == rowTable[1] &&
                     rowTable[1] == rowTable[2] &&
-                    rowTable[2] != null){
-                    status = true;
+                    rowTable[2] != null)
+                {
+                    isWin = true;
+                    break;
+                }
+                else if
+                (rowTable[0] != null
+                && rowTable[1] != null
+                && rowTable[2] != null)
+                {
+                    count ++;
                 }
             }
 
@@ -35,19 +84,27 @@ public class TicTacToe2
                         board[0][i] != null
                 )
                 {
-                    status = true;
+                    isWin = true;
                 }
             }
 
-            for (int i=0; i<board.length; i++) {
-                if (board[i][i] == board[i][i] &&
-                        board[i][i] == board[i][i] &&
-                        board[i][i] != null
-                )
-                {
-                    status = true;
-                }
+            //checking for diagonal win
+
+            if ((board[0][0] == board[1][1] &&
+                    board[1][1] == board[2][2] &&
+                    board[2][2] != null) ||
+                    (board[0][2]) == board[1][1]
+                    && board[1][1] == board[2][0]
+                    && board[2][0] != null
+            )
+            {
+                isWin = true;
             }
+
+            if (!isWin && count == 3){
+                isDraw = true;
+            }
+
         }
     }
 }
