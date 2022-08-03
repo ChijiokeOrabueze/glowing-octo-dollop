@@ -38,6 +38,16 @@ public class TicTacToe2
                     status = true;
                 }
             }
+
+            for (int i=0; i<board.length; i++) {
+                if (board[i][i] == board[i][i] &&
+                        board[i][i] == board[i][i] &&
+                        board[i][i] != null
+                )
+                {
+                    status = true;
+                }
+            }
         }
     }
 }

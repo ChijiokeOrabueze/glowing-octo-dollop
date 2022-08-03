@@ -102,5 +102,23 @@ public class TicTacToeTest2
         assertEquals(true, status);
     }
 
+    @Test
+    void checks_for_draw_when_board_is_full()
+    {
+        TicTacToe2 tictac = new TicTacToe2();
+        tictac.play(0,0);
+        tictac.play(0,1);
+        tictac.play(0,2);
+        tictac.play(2,0);
+        tictac.play(1,1);
+        tictac.play(2,2);
+        tictac.play(2,1);
+        tictac.play(1,0);
+        tictac.play(1,2);
+        boolean status = tictac.draw;
+
+        assertEquals(true, status);
+    }
+
 
 }
