@@ -69,7 +69,7 @@ public class TicTacToeTest2
         tictac.play(0,1);
         tictac.play(2,1);
         tictac.play(0,2);
-        boolean status = tictac.isWin;
+        boolean status = tictac.status;
 
         assertEquals(true, status);
     }
@@ -83,7 +83,7 @@ public class TicTacToeTest2
         tictac.play(1,0);
         tictac.play(2,1);
         tictac.play(2,0);
-        boolean status = tictac.isWin;
+        boolean status = tictac.status;
 
         assertEquals(true, status);
     }
@@ -97,7 +97,7 @@ public class TicTacToeTest2
         tictac.play(1,1);
         tictac.play(2,1);
         tictac.play(2,2);
-        boolean status = tictac.isWin;
+        boolean status = tictac.status;
 
         assertEquals(true, status);
     }
@@ -115,9 +115,10 @@ public class TicTacToeTest2
         tictac.play(2,1);
         tictac.play(1,0);
         tictac.play(1,2);
-        boolean draw = tictac.isDraw;
+        boolean status = tictac.draw;
 
-        assertEquals(true, draw);
+        assertEquals(true, status);
     }
+
 
 }

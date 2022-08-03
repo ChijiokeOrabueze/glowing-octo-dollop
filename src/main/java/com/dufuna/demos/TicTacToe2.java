@@ -27,6 +27,7 @@ public class TicTacToe2
             int col = key.nextInt();
             play(row,col);
 
+
             System.out.println(" ___________");
             for(int i=0; i< board.length ; i++)
             {
@@ -44,7 +45,7 @@ public class TicTacToe2
             System.out.println(" __________");
         }
 
-    }
+    boolean status = false;
 
     public static void play(int row, int col)
     {
@@ -56,16 +57,13 @@ public class TicTacToe2
                 PLAYER = "O";
             else
                 PLAYER = "X";
-
-            //horizontal check
             int count = 0;
-            for (String[] rowTable : board)
-            {
+            //horizontal check
+            for (String[] rowTable : board) {
                 if(rowTable[0] == rowTable[1] &&
                     rowTable[1] == rowTable[2] &&
-                    rowTable[2] != null)
-                {
-                    isWin = true;
+                    rowTable[2] != null){
+                    status = true;
                     break;
                 }
                 else if
@@ -84,25 +82,36 @@ public class TicTacToe2
                         board[0][i] != null
                 )
                 {
-                    isWin = true;
+
+            }
+
+            for (int i=0; i<board.length; i++) {
+                if (board[i][i] == board[i][i] &&
+                        board[i][i] == board[i][i] &&
+                        board[i][i] != null
+                )
+                {
+                    status = true;
+                    break;
+                }
+            }
+            if (!isWin && count == 3){
+                isDraw = true;
+            }
+
+
+            }
+
+            for (int i=0; i<board.length; i++) {
+                if (board[i][i] == board[i][i] &&
+                        board[i][i] == board[i][i] &&
+                        board[i][i] != null
+                )
+                {
+                    status = true;
                 }
             }
 
-            //checking for diagonal win
-
-            if ((board[0][0] == board[1][1] &&
-                    board[1][1] == board[2][2] &&
-                    board[2][2] != null) ||
-                    (board[0][2]) == board[1][1]
-                    && board[1][1] == board[2][0]
-                    && board[2][0] != null
-            )
-            {
-                isWin = true;
-            }
-
-            if (!isWin && count == 3){
-                isDraw = true;
             }
 
         }
