@@ -10,10 +10,6 @@ public class TicTacToe2
     static boolean isDraw = false;
     static boolean isWin = false;
 
-<<<<<<< HEAD
-    boolean status = false;
-    boolean isDraw = false;
-=======
     public static void main(String[] args)
     {
         Scanner key = new Scanner(System.in);
@@ -30,7 +26,7 @@ public class TicTacToe2
             System.out.println("player " + whichPlayer + " enter col number >> ");
             int col = key.nextInt();
             play(row,col);
->>>>>>> d42b35d723f9b1da2fc3a42758e0911e5b8984ee
+
 
             System.out.println(" ___________");
             for(int i=0; i< board.length ; i++)
@@ -138,7 +134,6 @@ public class TicTacToe2
                 isDraw = true;
             }
 
->>>>>>> d42b35d723f9b1da2fc3a42758e0911e5b8984ee
         }
     }
 }
