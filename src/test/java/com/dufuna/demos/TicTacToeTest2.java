@@ -2,6 +2,8 @@ package com.dufuna.demos;
 
 import org.junit.jupiter.api.Test;
 
+
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -27,7 +29,7 @@ public class TicTacToeTest2
     }
 
     @Test
-    void players_ShouldAlternate()
+    void do_players_alternate()
     {
         TicTacToe2 tictac = new TicTacToe2();
         String player1= tictac.PLAYER;

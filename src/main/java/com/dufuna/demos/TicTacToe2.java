@@ -1,110 +1,158 @@
 package com.dufuna.demos;
 
-import java.util.Scanner;
+import java.util.Objects;
 
 public class TicTacToe2
 {
+    String PLAYER ;
+    String[][] board ;
+    boolean isDraw = false;
+    boolean isWin = false;
+    int count;
 
-    static String PLAYER = "X";
-    static String[][] board = new String[3][3];
-    static boolean isDraw = false;
-    static boolean isWin = false;
-
-    public static void main(String[] args)
+    public TicTacToe2()
     {
-        Scanner key = new Scanner(System.in);
-        while(!isWin && !isDraw)
-        {
-            int whichPlayer;
-            if (PLAYER == "X")
-                whichPlayer = 1;
-            else{
-                whichPlayer = 2;
-            }
-            System.out.println("player " + whichPlayer + " enter row number >> ");
-            int row = key.nextInt();
-            System.out.println("player " + whichPlayer + " enter col number >> ");
-            int col = key.nextInt();
-            play(row,col);
-
-            System.out.println(" ___________");
-            for(int i=0; i< board.length ; i++)
-            {
-                System.out.print("| ");
-                for(int j = 0; j < board[i].length; j++)
-                {
-                    if (board[i][j] == null)
-                        System.out.print(" _ ");
-                    else
-                        System.out.print(board[i][j] + " ");
-                }
-                System.out.print(" |");
-                System.out.println();
-            }
-            System.out.println(" __________");
-        }
-
+        PLAYER = "X";
+        board = new String[3][3];
+        count = 0;
     }
 
-    public static void play(int row, int col)
+    public void play(int row, int col)
     {
         if(board[row][col] == null)
         {
             board[row][col] = PLAYER;
 
-            if (PLAYER == "X")
-                PLAYER = "O";
-            else
-                PLAYER = "X";
+            //switching of players
+            switchPlayers();
 
-            //horizontal check
-            int count = 0;
-            for (String[] rowTable : board)
-            {
-                if(rowTable[0] == rowTable[1] &&
-                    rowTable[1] == rowTable[2] &&
-                    rowTable[2] != null)
-                {
-                    isWin = true;
-                    break;
-                }
-                else if
-                (rowTable[0] != null
-                && rowTable[1] != null
-                && rowTable[2] != null)
-                {
-                    count ++;
-                }
-            }
+            //checks for horizontal win
+            checkHorizontalWin();
 
-            //vertical check
-            for (int i=0; i<board.length; i++) {
-                if (board[0][i] == board[1][i] &&
-                        board[1][i] == board[2][i] &&
-                        board[0][i] != null
-                )
-                {
-                    isWin = true;
-                }
-            }
+            //checks vertical
+            checksVerticalWin();
 
             //checking for diagonal win
+            checkDiagonalWin();
 
-            if ((board[0][0] == board[1][1] &&
-                    board[1][1] == board[2][2] &&
-                    board[2][2] != null) ||
-                    (board[0][2]) == board[1][1]
-                    && board[1][1] == board[2][0]
-                    && board[2][0] != null
+            //checks for draw
+            checksForDraw();
+
+        }
+    }
+
+    /**
+     * This method checks if there's a draw
+     */
+    private void checksForDraw() {
+        if (!isWin && count == 3)
+        {
+            isDraw = true;
+        }
+    }
+
+    /**
+     * This checks if there's a
+     * horizontal win
+     */
+    private void checkHorizontalWin() {
+        //horizontal check
+        for (String[] rowTable : board)
+        {
+            if(rowTable[0] == rowTable[1]
+                    && rowTable[1] == rowTable[2]
+                    && rowTable[2] != null)
+            {
+                isWin = true;
+                break;
+            }
+            else if
+            (rowTable[0] != null
+            && rowTable[1] != null
+            && rowTable[2] != null)
+            {
+                count ++;
+            }
+        }
+    }
+
+    /**
+     * This method checks if there's
+     * a diagonal win
+     */
+    private void checkDiagonalWin()
+    {
+        if ((board[0][0] == board[1][1] &&
+                board[1][1] == board[2][2] &&
+                board[2][2] != null) ||
+                board[0][2] == board[1][1]
+                && board[1][1] == board[2][0]
+                && board[2][0] != null
+        )
+        {
+            isWin = true;
+        }
+    }
+
+    /**
+     * This method checks if there's
+     * a vertical win
+     */
+    private void checksVerticalWin()
+    {
+        //vertical check
+        for (int i=0; i<board.length; i++)
+        {
+            if (board[0][i] == board[1][i]
+                    && board[1][i] == board[2][i]
+                    && board[0][i] != null
             )
             {
                 isWin = true;
             }
-
-            if (!isWin && count == 3){
-                isDraw = true;
-            }
-
         }
+    }
+
+    /**
+     * This method switches players after every
+     * call of the play method
+     */
+    private void switchPlayers()
+    {
+        if (PLAYER.equals("X"))
+        {
+            PLAYER = "O";
+            return;
+        }
+        PLAYER = "X";
+    }
+
+    /**
+     * gets the value of a cell in a board
+     * @param row to consider
+     * @param col to consider
+     * @return the value
+     */
+    public Object cellValue(int row, int col)
+    {
+        return board[row][col];
+    }
+
+    /**
+     *
+     * @return length of row
+     */
+    public int rowLength()
+    {
+        return board.length;
+    }
+
+    /**
+     *
+     * @return length of board column
+     */
+    public  int colLength()
+    {
+        return board[1].length;
     }
 }
