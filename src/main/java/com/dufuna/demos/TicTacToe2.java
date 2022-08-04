@@ -27,7 +27,7 @@ public class TicTacToe2
             int col = key.nextInt();
             play(row,col);
 
-            System.out.println(" ___________");
+            System.out.println(" _________");
             for(int i=0; i< board.length ; i++)
             {
                 System.out.print("| ");
@@ -41,7 +41,7 @@ public class TicTacToe2
                 System.out.print(" |");
                 System.out.println();
             }
-            System.out.println(" __________");
+            System.out.println(" ________");
         }
 
     }
